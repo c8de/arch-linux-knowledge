@@ -1,5 +1,4 @@
 # Arch install
-https://arcolinuxd.com/5-the-actual-installation-of-arch-linux-phase-1-uefi/
 
 1. Change the keyboard layout
    > loadkeys de_CH-latin1
