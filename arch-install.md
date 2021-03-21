@@ -77,7 +77,7 @@
    * 127.0.0.1 localhost
    * ::1 localhost
    * 127.0.1.1 *pc-name*.localdomain *pc-name*
-1. Install network manager
+1. Install network manager [ALREADY INCLUDED IN GNOME]
    > pacman -S networkmanager\
    > systemctl enable NetworkManager
 1. [OPTIONAL] Configure network connections
