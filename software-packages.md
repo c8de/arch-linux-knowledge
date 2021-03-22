@@ -19,14 +19,6 @@ texlive-most
   * install AUR dependency https://aur.archlinux.org/electron3-bin.git
   * install https://aur.archlinux.org/balena-etcher.git
 
-# Start the bluetooth service
-> systemctl start bluetooth.service\
-> systemctl enable bluetooth.service
-
-BUGFIX two pulseaudio instances started with Gnome
-> mkdir -p  /var/lib/gdm/.config/systemd/user\
-> ln -s /dev/null  /var/lib/gdm/.config/systemd/user/pulseaudio.socket
-
 # Install steam
 * Enabling multilib (used to run wine and steam)
   > sudo nano /etc/pacman.conf
