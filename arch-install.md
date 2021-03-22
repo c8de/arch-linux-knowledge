@@ -127,3 +127,11 @@
 1. Install driver
    > pacman -S nvidia nvidia-settings\
    > reboot (nouveau is blacklisted automatically)
+
+# [OPTIONAL] Start the bluetooth service
+> systemctl start bluetooth.service\
+> systemctl enable bluetooth.service
+BUGFIX [NOT REQUIRED ANYMORE] two pulseaudio instances started with Gnome
+> mkdir -p  /var/lib/gdm/.config/systemd/user\
+> ln -s /dev/null  /var/lib/gdm/.config/systemd/user/pulseaudio.socket
+
