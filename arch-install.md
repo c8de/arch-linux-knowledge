@@ -110,6 +110,8 @@
    > pacman -S gnome\
    > systemctl enable gdm\
    > reboot
+### Set the localization in Gnome
+   The localization in Gnome is not the same as set through vconsole.
 ### Install Gnome extensions if wished
     * Install dash to panel gnome extension
     * Install applications menu
