@@ -8,7 +8,6 @@ firefox | webbrowser | :heavy_check_mark:
 ntfs-3g | to read and write NTFS HD's (Windows)  | :heavy_check_mark:
 libreoffice-still | opensource office | :heavy_check_mark:
 pinta  | similar to Microsoft paint | :heavy_check_mark:
-intellij-idea-community-edition | IDE to code | :heavy_check_mark:
 exfat-utils
 gnome-disk-utility
 texmaker
