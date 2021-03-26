@@ -52,7 +52,7 @@
 1. Chroot into the new system
    > arch-chroot /mnt
 1. Set the timezone
-   > ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime\
+   > ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 1. Set the system time to hardware clock
    > hwclock --systohc
 1. Install nano text editor
@@ -63,8 +63,8 @@
    * Uncomment de_CH.UTF-8 UTF-8
    > locale-gen
 1. Create the local.conf file to set the localization
-   > nano /etc/locale.conf\
-   * LANG=de_CH.UTF-8\
+   > nano /etc/locale.conf
+   * LANG=de_CH.UTF-8
    * [OR] LANG=en_US.UTF-8
 1. Create the vconsole.conf file to set the keyboard layout
    > nano /etc/vconsole.conf
@@ -77,7 +77,7 @@
    * 127.0.0.1 localhost
    * ::1 localhost
    * 127.0.1.1 *pc-name*.localdomain *pc-name*
-1. Install network manager [ALREADY INCLUDED IN GNOME]
+1. Install network manager
    > pacman -S networkmanager\
    > systemctl enable NetworkManager
 1. [OPTIONAL] Configure network connections
