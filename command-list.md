@@ -48,3 +48,9 @@ Command | Description
 ---|---
 lspci \| grep -E "VGA\|3D" | list graphic cards
 lspci -vnn \| grep VGA -A 12 | show graphic card details
+
+## Error logs
+
+### Boot up
+Upon boot, the dmesg output is from the kernel booting, showing the devices it has found and if it has been able to configure them at all (aside from userland configuration). This log is also available in the file /var/log/dmesg.
+> dmesg --level=err,warn -Tx
