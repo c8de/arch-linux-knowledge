@@ -54,3 +54,23 @@ lspci -vnn \| grep VGA -A 12 | show graphic card details
 ### Boot up
 Upon boot, the dmesg output is from the kernel booting, showing the devices it has found and if it has been able to configure them at all (aside from userland configuration). This log is also available in the file /var/log/dmesg.
 > dmesg --level=err,warn -Tx
+
+### Systemd log
+All systemd service logs can be seen as follows:
+> journalctl
+
+If only the logs since the last boot up are relevant, type:
+> journalctl -b
+
+To only show messages marked as a certain level:
+> journalctl -p warning -b
+
+Where the following levels exist:
+    0: emerg
+    1: alert
+    2: crit
+    3: err
+    4: warning
+    5: notice
+    6: info
+    7: debug
