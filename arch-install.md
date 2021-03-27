@@ -135,3 +135,9 @@
 BUGFIX [NOT REQUIRED ANYMORE] two pulseaudio instances started with Gnome
 > mkdir -p  /var/lib/gdm/.config/systemd/user\
 > ln -s /dev/null  /var/lib/gdm/.config/systemd/user/pulseaudio.socket
+
+## Update the mirror list
+If the system did not update, make sure the mirrorlist is valid.
+
+   > pacman -S reflector\
+   > reflector --verbose -l 50 -p http -p https --country Switzerland --sort rate --save /etc/pacman.d/mirrorlist
