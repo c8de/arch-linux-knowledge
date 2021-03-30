@@ -113,13 +113,13 @@
 ### Set the localization in Gnome
    The localization in Gnome is not the same as set through vconsole.
 ### Install Gnome extensions if wished
-    * Install dash to panel gnome extension
-    * Install applications menu
-    * Install desktop-icons
+   * Install dash to panel gnome extension
+   * Install applications menu
+   * Install desktop-icons
 ### Install the Gnome tweak tool to modify appearance
-    > pacman -S gnome-tweak-tool\
-    > gnome-tweak-tool\
-    > gnome-tweaks (to start as a user other than root)
+   > pacman -S gnome-tweak-tool\
+   > gnome-tweak-tool\
+   > gnome-tweaks (to start as a user other than root)
 
 ## [OPTIONAL] Install Nvidia driver
 1. Check GPU
@@ -127,6 +127,12 @@
 1. Install driver
    > pacman -S nvidia nvidia-settings\
    > reboot (nouveau is blacklisted automatically)
+ 
+If problems occur with the display manager (Gnome), try to load the nvidia drivers as early as possible. This procedure has to be performed after every nvidia driver upgrade.
+1. nano /etc/mkinitcpio.conf
+   * replace the MODULES=() line with the following
+   * MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm) 
+1. mkinitcpio -p linux
 
 ## [OPTIONAL] Start the bluetooth service
 > systemctl start bluetooth.service\
