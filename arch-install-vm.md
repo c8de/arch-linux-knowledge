@@ -1,4 +1,4 @@
-# Arch install
+# Arch install VM (VMware)
 
 1. Download and flash the ISO file on an USB stick with balena etcher
 1. Connect the PC to the internet over ethernet (easiest)
@@ -100,6 +100,28 @@
    > pacman -S gnome-tweak-tool\
    > gnome-tweak-tool\
    > gnome-tweaks (to start as a user other than root)
+
+## Install VMware tools
+   * start the installation through vmware
+   > for x in {0..6}; do mkdir -p /etc/init.d/rc${x}.d; done\
+   > mount /dev/cdrom /mnt\
+   > tar xf /mnt/VMwareTools*.tar.gz -C /root\
+   > perl /root/vmware-tools-distrib/vmware-install.pl\
+   > nano /etc/systemd/system/vmwaretools.service\
+       > [Unit]\
+       > Description=VMWare Tools daemon\
+
+       > [Service]\
+       > ExecStart=/etc/init.d/vmware-tools start\
+       > ExecStop=/etc/init.d/vmware-tools stop\
+       > PIDFile=/var/lock/subsys/vmware\
+       > TimeoutSec=0\
+       > RemainAfterExit=yes\
+ 
+       > [Install]\
+       > WantedBy=multi-user.target
+   > systemctl enable vmwaretools.service
+   > reboot
 
 ## [OPTIONAL] Start the bluetooth service
 > systemctl start bluetooth.service\
