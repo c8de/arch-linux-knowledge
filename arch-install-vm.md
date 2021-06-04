@@ -37,37 +37,18 @@
    > gnome-tweaks (to start as a user other than root)
 
 ## Install VMware tools
-   * start the installation through vmware
-   > for x in {0..6}; do mkdir -p /etc/init.d/rc${x}.d; done\
-   > mount /dev/cdrom /mnt\
-   > tar xf /mnt/VMwareTools*.tar.gz -C /root\
-   > perl /root/vmware-tools-distrib/vmware-install.pl\
-   > nano /etc/systemd/system/vmwaretools.service\
-       > [Unit]\
-       > Description=VMWare Tools daemon\
+   > pacman -S open-vm-tools\
+   > systemctl start vmtoolsd\
+   > systemctl enable vmtoolsd
+### If fullscreen does not work
+   > cp /etc/vmware-tools/tools.conf.example /etc/vmware-tools/tools.conf\
+   > nano /etc/vmware-tools/tools.conf\
+   > Remove the # from this block:
+   
+    [resolutionKMS]
 
-       > [Service]\
-       > ExecStart=/etc/init.d/vmware-tools start\
-       > ExecStop=/etc/init.d/vmware-tools stop\
-       > PIDFile=/var/lock/subsys/vmware\
-       > TimeoutSec=0\
-       > RemainAfterExit=yes\
- 
-       > [Install]\
-       > WantedBy=multi-user.target
-   > systemctl enable vmwaretools.service
-   > reboot
-
-## [OPTIONAL] Start the bluetooth service
-> systemctl start bluetooth.service\
-> systemctl enable bluetooth.service
-
-BUGFIX [NOT REQUIRED ANYMORE] two pulseaudio instances started with Gnome
-> mkdir -p  /var/lib/gdm/.config/systemd/user\
-> ln -s /dev/null  /var/lib/gdm/.config/systemd/user/pulseaudio.socket
-
-## Update the mirror list
-If the system did not update, make sure the mirrorlist is valid.
-
-   > pacman -S reflector\
-   > reflector --verbose -l 50 -p http -p https --country Switzerland --sort rate --save /etc/pacman.d/mirrorlist
+    # Default is true if tools finds an xf86-video-vmware driver with
+    # version >= 13.2.0. If you don't have X installed, set this to true manually.
+    # This only affects tools for Linux.
+    enable=true
+   > systemctl restart vmtoolsd
