@@ -1,77 +1,12 @@
 # Arch install VM (VMware)
 
-1. Download and flash the ISO file on an USB stick with balena etcher
-1. Connect the PC to the internet over ethernet (easiest)
-1. Change the keyboard layout
-   > loadkeys de_CH-latin1
-1. Update the system clock
-   > timedatectl set-ntp true\
-   > timedatectl status
-1. Partition the disk
-   1. find the name of the harddrive
-      > fdisk -l
-   1. cfdisk
-      1. Delete all unwanted partitions
-      1. Example partition table (DOS)
-         > Sda1 16g linux bootable\
-         > Sda2 4g linux (2xRAM)
-1. Format the partitions
-   > mkswap /dev/sda2\
-   > swapon /dev/sda2\
-   > mkfs.ext4 /dev/sda1
-1. Mount the partitions
-   > mount /dev/sda1 /mnt
-1. Check the partitions
-   > lsblk
-1. [OPTIONAL] Edit the mirror list (to download software from)
-   > nano /etc/pacman.d/mirrorlist
-   * move the closest mirror to the top
-1. Install essential packages
-   > pacstrap /mnt base linux linux-firmware
-1. Generate fstab file
-   > genfstab -U /mnt >> /mnt/etc/fstab
-1. Check fstab with
-   > nano /mnt/etc/fstab
-1. Chroot into the new system
-   > arch-chroot /mnt
-1. Set the timezone
-   > ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime
-1. Set the system time to hardware clock
-   > hwclock --systohc
-1. Install nano text editor
-   > pacman -S nano
-1. Set the localization
-   > nano /etc/locale.gen
-   * Uncomment en_US.UTF-8 UTF-8
-   * Uncomment de_CH.UTF-8 UTF-8
-   > locale-gen
-1. Create the local.conf file to set the localization
-   > nano /etc/locale.conf
-   * LANG=de_CH.UTF-8
-   * [OR] LANG=en_US.UTF-8
-1. Create the vconsole.conf file to set the keyboard layout
-   > nano /etc/vconsole.conf
-   * KEYMAP=de_CH-latin1
-1. Create the hostname file
-   > nano /etc/hostname
-   * *pc-name*
-1. Set the network connection
-   > nano /etc/hosts
-   * 127.0.0.1 localhost
-   * ::1 localhost
-   * 127.0.1.1 *pc-name*.localdomain *pc-name*
-1. Enable dhcpcd
+1. Download the ISO file
+1. Setup a new VM in VMware
+1. Add the following line to the vm config file (.vmx)
+   * firmware = “efi”
+1. Install as described in arch-install.md without installing the network manager. Instead install dhcpcd:
    > pacman -S dhcpcd\
    > systemctl enable dhcpcd
-1. Set the root password
-   > passwd
-1. Install the bootloader
-   > pacman –S grub os-prober\
-   > grub-install /dev/sda\
-   > grub-mkconfig -o /boot/grub/grub.cfg
-1. Reboot the system
-   > exit\
-   > reboot
 
 # Post arch install
 
