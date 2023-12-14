@@ -6,13 +6,19 @@
    > loadkeys de_CH-latin1
 1. Verify if the installation supports EFI by checking if the following directory exists:
    > ls /sys/firmware/efi/efivars
-1. Connect to the internet
+1. Connect to the internet over Ethernet
    * install supports automatic connection over ethernet with DHCP
-   * can be verfied with ping
-     > ping archlinux.org
-1. Update the system clock
-   > timedatectl set-ntp true\
-   > timedatectl status
+1. Connect to the internet over WiFi
+   * iwctl
+   * device list
+   * station wlan0 scan
+   * station wlan0 get-networks
+   * station wlan0 connect SSID
+   * exit
+1. Verify internet connection
+   > ping archlinux.org
+1. Check the system clock
+   > timedatectl
 1. [OPTIONAL] using existing bootloader
    > fdisk -l\
    > mount /dev/sda1 /boot
@@ -44,7 +50,7 @@
    > nano /etc/pacman.d/mirrorlist
    * move the closest mirror to the top
 1. Install essential packages
-   > pacstrap /mnt base linux linux-firmware
+   > pacstrap -K /mnt base linux linux-firmware
 1. Generate fstab file
    > genfstab -U /mnt >> /mnt/etc/fstab
 1. Check fstab with
